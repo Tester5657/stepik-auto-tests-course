@@ -3,12 +3,32 @@ from selenium import webdriver
 
 link = "http://selenium1py.pythonanywhere.com/"
 
+'''
+Для фикстур можно задавать область покрытия фикстур. 
+Допустимые значения: “function”, “class”, “module”, “session”. 
+Соответственно, фикстура будет вызываться один раз для тестового метода, один раз для класса, 
+один раз для модуля или один раз для всех тестов, запущенных в данной сессии. 
+'''
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def browser():
     print("\nstart browser for test..")
     browser = webdriver.Chrome()
-    return browser
+    # All browsers will be closed at the end of the test suit
+    #return browser
+
+    # Browser will be closed at the end of each test
+    yield browser
+    browser.quit()
+
+"""
+параметр autouse=True, укажет, 
+что фикстуру нужно запустить для каждого теста даже без явного вызова
+"""
+@pytest.fixture(autouse=True)
+def prepare_data():
+    print()
+    print("preparing some critical data for every test")
 
 
 class TestMainPage1():
