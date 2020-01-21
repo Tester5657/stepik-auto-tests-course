@@ -4,15 +4,6 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium import webdriver
-
-@pytest.fixture(scope="session")
-def browser():
-    print("\nstart browser for test..")
-    browser = webdriver.Chrome()
-    yield browser
-    print("\nquit browser..")
-    browser.quit()
 
 list_of_lessons = ["236895", "236896", "236897", "236898", "236899", "236903", "236904", "236905"]
 
