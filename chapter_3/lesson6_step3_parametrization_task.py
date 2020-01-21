@@ -14,20 +14,11 @@ def browser():
     print("\nquit browser..")
     browser.quit()
 
-URLS = [
-    'https://stepik.org/lesson/236895/step/1',
-    'https://stepik.org/lesson/236896/step/1',
-    'https://stepik.org/lesson/236897/step/1',
-    'https://stepik.org/lesson/236898/step/1',
-    'https://stepik.org/lesson/236899/step/1',
-    'https://stepik.org/lesson/236903/step/1',
-    'https://stepik.org/lesson/236904/step/1',
-    'https://stepik.org/lesson/236905/step/1',
-]
+list_of_lessons = ["236895", "236896", "236897", "236898", "236899", "236903", "236904", "236905"]
 
-@pytest.mark.parametrize('url', URLS)
-def test_parametrization(browser, url):
-    link = f"{url}"
+@pytest.mark.parametrize('lesson', list_of_lessons)
+def test_parametrization(browser, lesson):
+    link = f"https://stepik.org/lesson/{lesson}/step/1"
     browser.get(link)
 
     input = WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".string-quiz__textarea")))
