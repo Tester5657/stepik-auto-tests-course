@@ -9,6 +9,6 @@ def test_guest_should_see_login_link(browser):
     time.sleep(4)
 
     """
-    pytest -s -v --language=fr chapter_3/lesson6_step8_parametrization/lesson6_step8_parametrization.py 
+    pytest -s -v --language=fr --browser_name=firefox chapter_3/lesson6_step8_parametrization/lesson6_step8_parametrization.py 
 
     """
