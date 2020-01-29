@@ -21,16 +21,14 @@ def browser(request):
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         print("\nstart browser for test..")
         browser = webdriver.Chrome(options=options)
-        yield browser
-        print("\nquit browser..")
-        browser.quit()
     elif browser_name == "firefox":
         fp = webdriver.FirefoxProfile()
         fp.set_preference("intl.accept_languages", user_language)
         browser = webdriver.Firefox(firefox_profile=fp)
         print("\nstart browser for test..")
-        yield browser
-        print("\nquit browser..")
-        browser.quit()
     else:
         print(f"browser {browser_name} is not supperted in the test ")
+        pytest.UsageError(f"--browser name should not be {browser_name}")
+    yield browser
+    print("\nquit browser..")
+    browser.quit()
